@@ -140,6 +140,7 @@ $(`#${sq2}`).removeClass('empty-square').addClass('full-square full-square-2').h
 // }
 
 const Left = () => {
+  let doesItMoves = false;
   leftSquares.forEach(sq => {
     let square = sq.split("-");
     console.log(square[1]);
@@ -164,14 +165,17 @@ const Left = () => {
         leftSquares = leftSquares.filter(s => s!== `${square[0]}-${i}`);
         emptySquares.push(`${square[0]}-${i}`);
         emptySquares.sort();
+        doesItMoves = true;
         break;
       }
       
     }
   });
+  return doesItMoves;
 }
 
 const Right = () => {
+  let doesItMoves = false;
   for (let j = leftSquares.length-1; j >= 0 ; j--) {
     const sq = leftSquares[j];
 
@@ -198,15 +202,18 @@ const Right = () => {
         leftSquares = leftSquares.filter(s => s!== `${square[0]}-${i}`);
         emptySquares.push(`${square[0]}-${i}`);
         emptySquares.sort();
+        doesItMoves = true;
         break;
       }
       
     }
     
   }
+  return doesItMoves;
 }
 
 const Up = () => {
+  let doesItMoves = false;
   leftSquares.forEach(sq => {
     let square = sq.split("-");
     console.log(square[0]);
@@ -231,14 +238,17 @@ const Up = () => {
         leftSquares = leftSquares.filter(s => s!== `${i}-${square[1]}`);
         emptySquares.push(`${i}-${square[1]}`);
         emptySquares.sort();
+        doesItMoves = true;
         break;
       }
       
     }
   });
+  return doesItMoves;
 }
 
 const Down = () => {
+  let doesItMoves = false;
   for (let j = leftSquares.length-1; j >= 0 ; j--) {
     const sq = leftSquares[j];
 
@@ -265,12 +275,14 @@ const Down = () => {
         leftSquares = leftSquares.filter(s => s!== `${i}-${square[1]}`);
         emptySquares.push(`${i}-${square[1]}`);
         emptySquares.sort();
+        doesItMoves = true;
         break;
       }
       
     }
     
   }
+  return doesItMoves;
 }
 
 // const LeftShift = () => {
@@ -297,6 +309,7 @@ const Down = () => {
 // }
 
 const LeftShift = () => {
+  let doesItShift = false;
   leftSquares.forEach(sq => {
     let square = sq.split("-");
     for (let i = 0; i < Number(square[1]); i++) {
@@ -318,14 +331,17 @@ const LeftShift = () => {
         emptySquares = emptySquares.filter(s => s!== `${square[0]}-${i}`)
         emptySquares.push(`${sq}`);
         emptySquares.sort();
+        doesItShift = true;
         break;
       }
       
     }
   });
+  return doesItShift;
 }
 
 const RightShift = () => {
+  let doesItShift = false;
   for (let j = leftSquares.length-1; j >= 0; j--) {
     // console.log(leftSquares.length);
     // console.log(leftSquares[1]);
@@ -358,15 +374,18 @@ const RightShift = () => {
         emptySquares = emptySquares.filter(s => s!== `${square[0]}-${i}`)
         emptySquares.push(`${sq}`);
         emptySquares.sort();
+        doesItShift = true;
         break;
       }
       
     }
     
   }
+  return doesItShift;
 }
 
 const UpShift = () => {
+  let doesItShift = false;
   leftSquares.forEach(sq => {
     let square = sq.split("-");
     for (let i = 0; i < Number(square[0]); i++) {
@@ -388,14 +407,17 @@ const UpShift = () => {
         emptySquares = emptySquares.filter(s => s!== `${i}-${square[1]}`)
         emptySquares.push(`${sq}`);
         emptySquares.sort();
+        doesItShift = true;
         break;
       }
       
     }
   });
+  return doesItShift;
 }
 
 const DownShift = () => {
+  let doesItShift = false;
   for (let j = leftSquares.length-1; j >= 0; j--) {
     // console.log(leftSquares.length);
     // console.log(leftSquares[1]);
@@ -428,12 +450,14 @@ const DownShift = () => {
         emptySquares = emptySquares.filter(s => s!== `${i}-${square[1]}`)
         emptySquares.push(`${sq}`);
         emptySquares.sort();
+        doesItShift = true;
         break;
       }
       
     }
     
   }
+  return doesItShift;
 }
 // const GenerateNew = () => {
 //   let r = Math.floor(Math.random()*4);
@@ -444,6 +468,117 @@ const DownShift = () => {
 //   }
 //   $(`#${r}-${c}`).removeClass('empty-square').addClass('full-square full-square-2').html(2);
 // }
+
+const checkMoreMovesPossible = () => {
+  let doesItMovesX = false;
+  let doesItMovesY = false;
+  let doesItShiftLeft = false;
+  let doesItShiftUp = false;
+  let doesItShiftRight = false;
+  let doesItShiftDown = false;
+
+  leftSquares.forEach(sq => {
+    let square = sq.split("-");
+    console.log(square[1]);
+    for (let i = Number(square[1])+1; i < 4; i++) {
+      console.log(i);
+      if($(`#${square[0]}-${i}`).hasClass('full-square')){
+        console.log($(`#${square[0]}-${i}`).html());
+        console.log($(`#${sq}`).html());
+        if($(`#${square[0]}-${i}`).html() !== $(`#${sq}`).html()){
+          break;
+        }
+        doesItMovesX = true;
+        break;
+      }
+      
+    }
+  });
+
+
+  leftSquares.forEach(sq => {
+    let square = sq.split("-");
+    console.log(square[0]);
+    for (let i = Number(square[0])+1; i < 4; i++) {
+      console.log(i);
+      if($(`#${i}-${square[1]}`).hasClass('full-square')){
+        console.log($(`#${i}-${square[1]}`).html());
+        console.log($(`#${sq}`).html());
+        if($(`#${i}-${square[1]}`).html() !== $(`#${sq}`).html()){
+          break;
+        }
+
+        doesItMovesY = true;
+        break;
+      }
+      
+    }
+  });
+
+
+  leftSquares.forEach(sq => {
+    let square = sq.split("-");
+    for (let i = 0; i < Number(square[1]); i++) {
+      if($(`#${square[0]}-${i}`).hasClass('empty-square')){
+        doesItShiftLeft = true;
+        break;
+      }
+    }
+  });
+
+  leftSquares.forEach(sq => {
+    let square = sq.split("-");
+    for (let i = 0; i < Number(square[0]); i++) {
+      if($(`#${i}-${square[1]}`).hasClass('empty-square')){
+        doesItShiftUp = true;
+        break;
+      }
+    }
+  });
+
+
+  for (let j = leftSquares.length-1; j >= 0; j--) {
+    const sq = leftSquares[j];
+
+    let square = sq.split("-");
+    console.log(square);
+    let m = leftSquares.length-1;
+    console.log(Number(square[1]));
+    console.log(m);
+    for (let i = 3; i > Number(square[1]); i--) {
+      console.log('Yes');
+      if($(`#${square[0]}-${i}`).hasClass('empty-square')){
+        doesItShiftRight = true;
+        break;
+      }
+    }
+  }
+
+  for (let j = leftSquares.length-1; j >= 0; j--) {
+    const sq = leftSquares[j];
+
+    let square = sq.split("-");
+    console.log(square);
+    let m = leftSquares.length-1;
+    console.log(Number(square[1]));
+    console.log(m);
+    for (let i = 3; i > Number(square[0]); i--) {
+      console.log('Yes');
+      if($(`#${i}-${square[1]}`).hasClass('empty-square')){
+        doesItShiftDown = true;
+        break;
+      }
+      
+    }
+    
+  }
+
+  if(doesItMovesX || doesItMovesY || doesItShiftLeft || doesItShiftUp || doesItShiftRight || doesItShiftDown){
+    return true;
+  }
+  return false;
+
+}
 
 const GenerateNew = () => {
   let sq = emptySquares[Math.floor(Math.random()*emptySquares.length)];
@@ -464,43 +599,67 @@ const GenerateNew = () => {
 let u,d,l,r;
 u=d=l=r=true;
 
+const doesMovesLeft = () => {
+  let movesLeft = checkMoreMovesPossible();
+  if(!movesLeft){
+    alert("GAME OVER");
+    return false;
+  } 
+  return true;
+}
+
 document.onkeydown = function(e){
-  console.log(d);
-  console.log(l);
-  console.log("Hello");
-  console.log(e.keyCode);
-  if((!u || !d) && (!l || !r)){
-    if(emptySquares.length===0){
-      console.log("GAME OVER");
-      alert("GAME OVER");
-    }
-  }
+  // console.log(d);
+  // console.log(l);
+  // console.log("Hello");
+  // console.log(e.keyCode);
+  // if((!u || !d) && (!l || !r)){
+  //   if(emptySquares.length===0){
+  //     console.log("GAME OVER");
+  //     alert("GAME OVER");
+  //   }
+  // }
+  let move, shift;
   switch (e.keyCode) { 
     case 37: 
         console.log("left");
-        Left();
+        move = Left();
         console.log("sum done");
-        LeftShift();
-        l=GenerateNew();
+        shift = LeftShift();
+        if(move || shift){
+          l=GenerateNew();
+        }
+        doesMovesLeft();
         break; 
     case 38: 
         console.log("up");
-        Up();
-        UpShift();
-        u=GenerateNew();
+        move = Up();
+        console.log("sum done");
+        shift = UpShift();
+        if(move || shift){
+          u=GenerateNew();
+        } 
+        doesMovesLeft();
         break; 
     case 39: 
         console.log("right");
-        Right();
-        console.log("sum r done");
-        RightShift();
-        r=GenerateNew();
+        move = Right();
+        console.log("sum done");
+        shift = RightShift();
+        if(move || shift){
+          r=GenerateNew();
+        } 
+        doesMovesLeft();
         break; 
     case 40: 
         console.log("down");
-        Down();
-        DownShift();
-        d=GenerateNew();
+        move = Down();
+        console.log("sum done");
+        shift = DownShift();
+        if(move || shift){
+          d=GenerateNew();
+        } 
+        doesMovesLeft();
         break; 
   } 
   
