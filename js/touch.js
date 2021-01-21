@@ -66,3 +66,8 @@ function handleGesture() {
     //     console.log('Tap');
     // }
 }
+
+window.onbeforeunload = function() {
+  console.log("prevent");
+  return "Dude, are you sure you want to leave? Think of the kittens!";
+}
