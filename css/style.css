@@ -111,7 +111,7 @@ body, html{
 .full-square-32{
   background-color: rgb(211, 191, 17);
 }
-.full-square-62{
+.full-square-64{
   background-color: rgb(218, 108, 5);
 }
 .full-square-128{
@@ -315,6 +315,9 @@ body, html{
     margin: auto;
     left: calc(50% - 50px);
   }
+  .full-square{
+    font-size: 2.2rem;
+  }
 }
 @media only screen and (max-width: 650px){
   .row{
@@ -357,6 +360,7 @@ body, html{
     margin: auto;
     left: calc(50% - 50px);
   }
+
 }
 @media only screen and (max-width: 550px){
   .row{
@@ -452,6 +456,48 @@ body, html{
   .container{
     width: 280px;
     height: 280px;
+    z-index: 100;
+  }
+  .settings{
+    width: 280px;
+    height: 180px;
+  }
+  .heading-box{
+    width: 200px;
+    height: 70px;
+    font-size: 4rem;
+    margin-bottom: 40px;
+  }
+  .col-1{
+    padding-bottom: 20px;
+    padding-top: 30px;
+    width: 80%;
+    justify-content: flex-start;
+    height: auto;
+  }
+  .col-2{
+    width: 80%;
+    align-items: flex-start;
+    margin-top: 0;
+    height: auto;
+    padding-bottom: 100px;
+  }
+  .pillar{
+    width: 100px;
+    margin: auto;
+    left: calc(50% - 50px);
+  }
+}
+@media only screen and (max-width: 360px){
+  .row{
+    padding: 0;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 100vh;
+  }
+  .container{
+    width: 220px;
+    height: 220px;
     z-index: 100;
   }
   .settings{
