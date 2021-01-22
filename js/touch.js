@@ -19,7 +19,7 @@ gestureZone.addEventListener('touchend', function(event) {
 function handleGesture() {
     if (touchendX <= touchstartX && (Math.abs(touchendY-touchstartY) < Math.abs(touchendX-touchstartX))) {
         console.log('Swiped left');
-        move = Left();
+        move = LeftSum();
         console.log("sum done");
         shift = LeftShift();
         if(move || shift){
@@ -30,7 +30,7 @@ function handleGesture() {
     
     else if (touchendX >= touchstartX && (Math.abs(touchendY-touchstartY) < Math.abs(touchendX-touchstartX))  ) {
         console.log('Swiped right');
-        move = Right();
+        move = RightSum();
         console.log("sum done");
         shift = RightShift();
         if(move || shift){
@@ -42,7 +42,7 @@ function handleGesture() {
     
     else if (touchendY <= touchstartY && (Math.abs(touchendY-touchstartY) > Math.abs(touchendX-touchstartX))) {
         console.log('Swiped up');
-        move = Up();
+        move = UpSum();
         console.log("sum done");
         shift = UpShift();
         if(move || shift){
@@ -53,7 +53,7 @@ function handleGesture() {
     
     else if (touchendY >= touchstartY && (Math.abs(touchendY-touchstartY) > Math.abs(touchendX-touchstartX))) {
         console.log('Swiped down');
-        move = Down();
+        move = DownSum();
         console.log("sum done");
         shift = DownShift();
         if(move || shift){
