@@ -67,7 +67,7 @@ function handleGesture() {
     // }
 }
 
-window.onbeforeunload = function() {
-  console.log("prevent");
-  return "Dude, are you sure you want to leave? Think of the kittens!";
-}
+// window.onbeforeunload = function() {
+//   console.log("prevent");
+//   return "Dude, are you sure you want to leave? Think of the kittens!";
+// }

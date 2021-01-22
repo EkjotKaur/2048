@@ -6,6 +6,8 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" />
   <link rel="stylesheet" type="text/css" href="css/style.css" />
 
   <title>2048</title>
@@ -17,7 +19,14 @@
         2048
       </div>
       <div class="settings">
-        
+        <div class="settings-items">
+          <button class="restart help" id="restart"><i class="fas fa-sync-alt"></i></button>
+          <button class="info help"><i class="fas fa-info"></i></button>
+        </div>
+        <div class="level">
+          <button class="easy" id="easy" onclick="toEasy(event)"  value="Easy">Easy</button>
+          <button class="hard active" id="hard" onclick="toHard()" value="Hard">Hard</button>
+        </div>
       </div>
     </div>
     <div class="col-2">
@@ -26,18 +35,28 @@
         <div id="0-1" class="empty-square"></div>
         <div id="0-2" class="empty-square"></div>
         <div id="0-3" class="empty-square"></div>
+        <div id="0-4" class="empty-square hidden"></div>
         <div id="1-0" class="empty-square"></div>
         <div id="1-1" class="empty-square"></div>
         <div id="1-2" class="empty-square"></div>
         <div id="1-3" class="empty-square"></div>
+        <div id="1-4" class="empty-square hidden"></div>
         <div id="2-0" class="empty-square"></div>
         <div id="2-1" class="empty-square"></div>
         <div id="2-2" class="empty-square"></div>
         <div id="2-3" class="empty-square"></div>
+        <div id="2-4" class="empty-square hidden"></div>
         <div id="3-0" class="empty-square"></div>
         <div id="3-1" class="empty-square"></div>
         <div id="3-2" class="empty-square"></div>
         <div id="3-3" class="empty-square"></div>
+        <div id="3-4" class="empty-square hidden"></div>
+        <div id="4-0" class="empty-square hidden"></div>
+        <div id="4-1" class="empty-square hidden"></div>
+        <div id="4-2" class="empty-square hidden"></div>
+        <div id="4-3" class="empty-square hidden"></div>
+        <div id="4-4" class="empty-square hidden"></div>
+        
       </div>
     </div>
   </div>
@@ -45,7 +64,12 @@
   <div class="pillar">
           
   </div>
+
+  <div class="game-going animate__animated animate__animate__fadeIn" id="game-over">
+    <h1>GAME OVER</h1>
+  </div>
   <script src="js/script.js"></script>
   <script src="js/touch.js"></script>
+  <script src="js/style.js"></script>
 </body>
 </html>
