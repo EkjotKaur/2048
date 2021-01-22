@@ -71,3 +71,10 @@ function handleGesture() {
 //   console.log("prevent");
 //   return "Dude, are you sure you want to leave? Think of the kittens!";
 // }
+
+function noScroll() {
+  window.scrollTo(0, 0);
+}
+
+// add listener to disable scroll
+window.addEventListener('scroll', noScroll);
