@@ -65,6 +65,7 @@ function handleGesture() {
     // if (touchendY === touchstartY) {
     //     console.log('Tap');
     // }
+    $('.score').html(score);
 }
 
 // window.onbeforeunload = function() {

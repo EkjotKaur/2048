@@ -1,5 +1,5 @@
 let n = 4;
-
+let score = 123456;
 let emptySquares = [];
 let leftSquares = [];
 
@@ -10,6 +10,7 @@ for(let i = 0; i< n; i++){
 }
 
 const Reset = () => {
+  score = 0;
   leftSquares.forEach( sq => {
     let number = $(`#${sq}`).html();
     $(`#${sq}`).addClass('empty-square').removeClass(`full-square full-square-${number}`).html('');
@@ -108,6 +109,7 @@ const LeftSum = () => {
         let toBeRemoved = $(`#${square[0]}-${i}`).html();
         $(`#${sq}`).html(Number($(`#${sq}`).html())*2);
         let newValue = $(`#${sq}`).html();
+        score += Number(newValue);
         $(`#${sq}`).addClass(`full-square-${newValue}`).removeClass(`full-square-${toBeRemoved}`);
         $(`#${square[0]}-${i}`).addClass('empty-square').removeClass(`full-square full-square-${toBeRemoved}`);
         $(`#${square[0]}-${i}`).html('');
@@ -138,6 +140,7 @@ const RightSum = () => {
         let toBeRemoved = $(`#${square[0]}-${i}`).html();
         $(`#${sq}`).html(Number($(`#${sq}`).html())*2);
         let newValue = $(`#${sq}`).html();
+        score += Number(newValue);
         $(`#${sq}`).addClass(`full-square-${newValue}`).removeClass(`full-square-${toBeRemoved}`);
         $(`#${square[0]}-${i}`).addClass('empty-square').removeClass(`full-square full-square-${toBeRemoved}`);
         $(`#${square[0]}-${i}`).html('');
@@ -167,6 +170,7 @@ const UpSum = () => {
         let toBeRemoved = $(`#${i}-${square[1]}`).html();
         $(`#${sq}`).html(Number($(`#${sq}`).html())*2);
         let newValue = $(`#${sq}`).html();
+        score += Number(newValue);
         $(`#${sq}`).addClass(`full-square-${newValue}`).removeClass(`full-square-${toBeRemoved}`);
         $(`#${i}-${square[1]}`).addClass('empty-square').removeClass(`full-square full-square-${toBeRemoved}`);
         $(`#${i}-${square[1]}`).html('');
@@ -202,7 +206,7 @@ const DownSum = () => {
         let toBeRemoved = $(`#${i}-${square[1]}`).html();
         $(`#${sq}`).html(Number($(`#${sq}`).html())*2);
         let newValue = $(`#${sq}`).html();
-
+        score += Number(newValue);
         $(`#${sq}`).addClass(`full-square-${newValue}`).removeClass(`full-square-${toBeRemoved}`);
         $(`#${i}-${square[1]}`).addClass('empty-square').removeClass(`full-square full-square-${toBeRemoved}`);
         $(`#${i}-${square[1]}`).html('');
@@ -499,6 +503,7 @@ const doesMovesLeft = () => {
   if(!movesLeft){
     // alert("GAME OVER");
     $("#game-over").addClass("game-over").removeClass("game-going");
+    $("#game-over button").addClass("play-again").removeClass("playing-now");
     return false;
   } 
   return true;
@@ -550,9 +555,16 @@ document.onkeydown = function(e){
         doesMovesLeft();
         break; 
   } 
+  $('.score').html(score);
   
 }
 
 document.getElementById("restart").addEventListener("click", () => {
   Reset();
 });
+
+const playAgain = () => {
+  Reset();
+  $("#game-over").addClass("game-going").removeClass("game-over");
+  $("#game-over button").addClass("playing-now").removeClass("play-again");
+}

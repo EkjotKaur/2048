@@ -8,6 +8,8 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/style.css" />
 
   <title>2048</title>
@@ -19,10 +21,16 @@
         2048
       </div>
       <div class="settings">
+        <div class="score hidden-score-1" id="score">
+          
+        </div>
         <div class="settings-items">
           <button class="restart help" id="restart"><i class="fas fa-sync-alt"></i></button>
           <button class="info help"><i class="fas fa-info"></i></button>
         </div>
+        <div class="score hidden-score" id="score">
+          
+        </div> 
         <div class="level">
           <button class="easy" id="easy" onclick="toEasy(event)"  value="Easy">Easy</button>
           <button class="hard active" id="hard" onclick="toHard()" value="Hard">Hard</button>
@@ -67,6 +75,7 @@
 
   <div class="game-going animate__animated animate__animate__fadeIn" id="game-over">
     <h1>GAME OVER</h1>
+    <button class="playing-now" onclick="playAgain()"><h1>Play Again</h1> <i class="fas fa-sync-alt"></i></button>
   </div>
   <script src="js/script.js"></script>
   <script src="js/touch.js"></script>

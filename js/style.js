@@ -22,3 +22,5 @@ if(screenWidth <= 600){
   const width = $('#gestureZone').width();
   console.log($('#gestureZone').css({"height": width}));
 }
+
+$('.score').html(score);
