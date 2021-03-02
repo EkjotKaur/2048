@@ -568,3 +568,8 @@ const playAgain = () => {
   $("#game-over").addClass("game-going").removeClass("game-over");
   $("#game-over button").addClass("playing-now").removeClass("play-again");
 }
+
+
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').focus();
+})
