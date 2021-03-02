@@ -11,6 +11,7 @@ for(let i = 0; i< n; i++){
 
 const Reset = () => {
   score = 0;
+  $('.score').html(score);
   leftSquares.forEach( sq => {
     let number = $(`#${sq}`).html();
     $(`#${sq}`).addClass('empty-square').removeClass(`full-square full-square-${number}`).html('');
@@ -567,4 +568,5 @@ const playAgain = () => {
   Reset();
   $("#game-over").addClass("game-going").removeClass("game-over");
   $("#game-over button").addClass("playing-now").removeClass("play-again");
+  score = 0;
 }

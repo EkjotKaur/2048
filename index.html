@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" href="css/modal.css">
 
   <title>2048</title>
 </head>
@@ -26,7 +27,7 @@
         </div>
         <div class="settings-items">
           <button class="restart help" id="restart"><i class="fas fa-sync-alt"></i></button>
-          <button class="info help"><i class="fas fa-info"></i></button>
+          <button class="info help"><a onclick="loginModal()"><i class="fas fa-info"></i></a></button>
         </div>
         <div class="score hidden-score" id="score">
           
@@ -77,8 +78,42 @@
     <h1>GAME OVER</h1>
     <button class="playing-now" onclick="playAgain()"><h1>Play Again</h1> <i class="fas fa-sync-alt"></i></button>
   </div>
+
+
+    <!-- The Modal -->
+    <div id="loginModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content light-primary-color">
+        <div class="modal-header">
+          <span onclick="closeLogin()" class="close">&times;</span>
+          <h2>Login</h2>
+        </div>
+        <hr>
+        <div class="modal-body ">
+          <form>
+            <div class="input-group">
+              <label for="email-login">Email:</label>
+              <input type="email" name="" id="email-login" required />
+            </div>
+            <div class="input-group">
+              <label for="password-login">Password:</label>
+              <input type="password" name="" id="password-login" required  minlength="8"/>
+            </div>         
+            <hr>
+            <div class="modal-footer">
+              <button type="submit" class="btn default-primary-color default-border-color text-primary-color modal-btn">Login</button>
+              <button type="reset" onclick="closeLogin()"  class="btn default-color default-border-color modal-btn">Close</button>
+            </div>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+
+
   <script src="js/script.js"></script>
   <script src="js/touch.js"></script>
   <script src="js/style.js"></script>
+  <script src="js/instruction.js"></script>
 </body>
 </html>
