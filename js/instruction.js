@@ -1,36 +1,36 @@
-
-
-for (let i = 1; i < 5; i++) {
-  console.log($(`#inst-${i}`));
-  $(`#inst-${i}`).css({
-    "display": "none"
-  });
-  
+function openModal() {
+  document.getElementById("myModal").style.display = "block";
 }
 
-$(`#inst-${1}`).css({
-  "display": "flex"
-});
+function closeModal() {
+  document.getElementById("myModal").style.display = "none";
+}
 
-const next = () => {
-  for (let i = 1; i < 4; i++) {
-    console.log($(`#inst-${i}`).css("display"));
-    if($(`#inst-${i}`).css("display") != "none"){
-      $(`#inst-${i}`).css({
-        "display": "none"
-      });
-      if(i!=3){
-        $(`#inst-${i+1}`).css({
-          "display": "flex"
-        });
-      } else {
-        $(`#inst-${1}`).css({
-          "display": "flex"
-        });
-      }
-      return;
-    }
-    
-    
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  var captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
   }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
 }

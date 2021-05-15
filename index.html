@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <link rel="shortcut icon" href="img/2048/2048-logo.png" type="image/x-icon">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 
@@ -12,16 +11,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" />
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  
-  
+  <link rel="stylesheet" type="text/css" href="css/instruction.css" />
   <link rel="stylesheet" type="text/css" href="css/style.css" />
+
 
   <title>2048</title>
 </head>
 <body>
-  <div class="myRow">
-    <div class="my-col-1">
+  <div class="row">
+    <div class="col-1">
       <div class="heading-box">
         2048
       </div>
@@ -31,7 +29,7 @@
         </div>
         <div class="settings-items">
           <button class="restart help" id="restart"><i class="fas fa-sync-alt"></i></button>
-          <button class="info help" type="button" data-toggle="modal" data-target="#myModal" ><i class="fas fa-info"></i></button>
+          <button class="info help" onclick="openModal();currentSlide(1)"><i class="fas fa-info"></i></button>
         </div>
         <div class="score hidden-score" id="score">
           
@@ -42,7 +40,7 @@
         </div>
       </div>
     </div>
-    <div class="my-col-2">
+    <div class="col-2">
       <div class="container" id="gestureZone">
         <div id="0-0" class="empty-square"></div>
         <div id="0-1" class="empty-square"></div>
@@ -78,59 +76,93 @@
           
   </div>
 
+  <div class="game-going animate__animated animate__animate__fadeIn" id="game-over">
+    <h1>GAME OVER</h1>
+    <button class="playing-now" onclick="playAgain()"><h1>Play Again</h1> <i class="fas fa-sync-alt"></i></button>
+  </div>
 
-  <!-- Button trigger modal
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button> -->
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">How To Play</h3>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+
+  <!-- <h2 style="text-align:center">Lightbox</h2> -->
+
+<div class="ROW">
+  <div class="column">
+    <div src="div_nature.jpg" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+  </div>
+  <!-- <div class="column">
+    <img src="img_snow.jpg" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="img_mountains.jpg" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="img_lights.jpg" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
+  </div> -->
+</div>
+
+<div id="myModal" class="modal">
+  <span class="close cursor" onclick="closeModal()">&times;</span>
+  <div class="modal-content">
+
+    <h1 class="instructionHeading">How to Play</h1>
+    
+    <div class="caption-container">
+      <h2 id="caption"></h2>
+    </div>
+
+    <div class="mySlides">
+      <!-- <div class="numbertext">1 / 4</div> -->
+      <div><img class="imageSlides demo" src="img/2048/2048-1.png" alt="There are some numbers on the board.">
+    </div>
       </div>
-      <div class="modal-body">
-        <div class="inst-1" id="inst-1">
-          <h5>These are some numbers on the board</h5>
-          <img class="info-img" src="img/2048-1.png" alt="">
-        </div>
-        <div class="inst-1" id="inst-2">
-          <h5>For Touch Screen: Swipe any direction (Up, Down, Left, Right)</h5>
-          <h5>For Laptop/Keypads: Use arrow keys (Up, Down, Left,  Right)</h5>
-          <h5>To move all tiles.</h5>
-          <img class="info-img-2" src="img/2048-trt-2.png" alt="">
-        </div>
-        <div class="inst-1" id="inst-3">
-          <h5>A new tile of 2 will appear on the board after every move.</h5>
-          <img class="info-img" src="img/2048-3.png" alt="">
-        </div>
+
+    <div class="mySlides">
+      <!-- <div class="numbertext">2 / 4</div> -->
+      <div><img class="imageSlides demo" src="img/2048/2048-3.png" alt="Swipe/Key Press any direction (Up, Down, Left, Right) to move all tiles.">
+    </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="next()">Next</button>
+
+    <div class="mySlides">
+      <!-- <div class="numbertext">3 / 4</div> -->
+      <div><img class="imageSlides demo" src="img/2048/2048-2.png" alt="A new tile of 2 will appear on the board after every move.">
+    </div>
       </div>
+    
+    <div class="mySlides">
+      <!-- <div class="numbertext">4 / 4</div> -->
+      <div><img class="imageSlides demo" src="img/2048/2048-4.2.png" alt="When two tiles with same number touch each other, they merge into one!">
+    </div>
+      </div>
+
+    <div class="mySlides">
+      <!-- <div class="numbertext">5 / 4</div> -->
+      <div><img class="imageSlides demo" src="img/2048/2048-5.png" alt="When the board is filled up, you lose."></div>
+      </div>
+    
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+    
+
+    <div class="column">
+      <div class="demo cursor"  style=" background: pink; width:100%" onclick="currentSlide(1)" alt="Nature and sunrise">
+    </div>
+    <div class="column">
+      <div class="demo cursor"  style=" background: pink; width:100%" onclick="currentSlide(2)" alt="Snow">
+    </div>
+    <div class="column">
+      <div class="demo cursor"  style=" background: pink; width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
+    </div>
+    <div class="column">
+      <div class="demo cursor"  style=" background: pink; width:100%" onclick="currentSlide(4)" alt="Northern Lights">
     </div>
   </div>
 </div>
 
 
 
-  <div class="game-going animate__animated animate__animate__fadeIn" id="game-over">
-    <h1>GAME OVER</h1>
-    <button class="playing-now" onclick="playAgain()"><h1>Play Again</h1> <i class="fas fa-sync-alt"></i></button>
-  </div>
 
   <script src="js/script.js"></script>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-
-  
   <script src="js/touch.js"></script>
   <script src="js/style.js"></script>
   <script src="js/instruction.js"></script>
